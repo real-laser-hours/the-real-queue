@@ -1,9 +1,9 @@
 ### Start this
 1. get XAMPP
 2. install 
-⋅⋅* get Apache
-⋅⋅* get MySQL
-⋅⋅* get Filezilla
-⋅⋅* get phpMyAdmin
+⋅⋅1.get Apache
+⋅⋅2. get MySQL
+⋅⋅3.get Filezilla
+⋅⋅4. get phpMyAdmin
 
 

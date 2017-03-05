@@ -35,11 +35,11 @@
 </nav>
     
     <div class="container">
-      <h1>image here lads </h1>
+      <h1>&nbsp;</h1>
       <div class="row">
 <div class="col-md-8 col-lg-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Files list</div>
+        <div class="panel-heading">Files list (WARNING: /old/ is not formatted. Use at own risk. Click a file to download)</div>
         <div class="panel-body">
           <div class="files-list">
 <div class="file"> 
@@ -52,7 +52,7 @@ while ($read = readdir($dir))
 
 if ($read!='.' && $read!='..') 
 { 
-echo '<li><a href="files/'.$read.'">'.$read.'</a></li>'; 
+echo '<li><a href="ftp/'.$read.'">'.$read.'</a></li>'; 
 }
 
 }

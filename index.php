@@ -26,7 +26,10 @@
     <div class="collapse navbar-collapse" id="myDefaultNavbar1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">View All Files<span class="sr-only">(current)</span></a></li>
-        <li ><a href="form.html">Upload</a></li>    
+        <li ><a href="form.html">Upload</a></li>
+        <li ><a href="archive.php">Archive</a></li>  
+                                <li class=""><a href="admin.php">Admin</a></li>  
+ 
       </ul>
 </div>
     <!-- /.navbar-collapse --> 

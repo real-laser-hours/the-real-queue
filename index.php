@@ -48,26 +48,19 @@
 <div class="file"> 
        <ul> 
 <?php 
+
 		   $dir = opendir('ftp/'); 
 echo '<ul>';
-while ($read = readdir($dir)) 
-{
-
-if ($read!='.' && $read!='..') 
-{ 
+while ($read = readdir($dir)) {
+if ($read!='.' && $read!='..') { 
 echo '<li><a href="ftp/'.$read.'">'.$read.'</a></li>'; 
 }
-
 }
-
 echo '</ul>';
-
 closedir($dir); 
 	?>
 
-</ul> 
-         
-         
+</ul>
          </div>
           </div>
         </div>

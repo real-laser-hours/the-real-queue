@@ -27,41 +27,17 @@
   </div>
   </nav>
   
-  
-  
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <table class="table table-bordered table-hover dt-responsive">
-        <caption class="text-center">&nbsp;
-       
-        </caption>
-        <thead>
-          <tr>
-            <th>File (click to download)</th>
-            <th>$speed</th>
-            <th>$power</th>
+    
         
-            <th>$timest</th>
-          </tr>
-        </thead>
-        <tbody>
-         <?php 
-
-		   $dir = opendir('ftp/old'); 
-
-while ($read = readdir($dir)) {
-	echo '<tr>';
-if ($read!='.' && $read!='..') { 
-echo '<td><a href="ftp/old'.$read.'">'.$read.'</a></td>';
-	echo '</tr>';
-}
-}
-
-closedir($dir); 
-	?>
-          
+        
+        
+	  
+	  <br>
+	  <p>this page is redundant and will be removed.</p>
+  
 
           
         </tbody>

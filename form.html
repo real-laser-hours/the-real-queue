@@ -32,8 +32,10 @@
 <div class="container">
 
   <div class="row">
-	  <div class="text-center col-md-12"> <p>if you are re-submitting something with the same project name and filename, it will be overwritten.</p>
-    </div>
+	  <div class="text-center col-md-12">
+	    <p>Other characters work(e.g. Chinese, Swedish, Russian etc.), but the database entry could corrupt, causing the file to become corrupt. Not reccomended.</p>
+	    <p>You can re-upload files with the same filename and project name and material. Just be aware of the timestamp on the upload page. </p>
+	  </div>
     <form role="form" enctype="multipart/form-data" action="upload_file.php" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail2">Project Name<br>
@@ -54,22 +56,19 @@
   <label for="exampleInputFile">File input</label>
     <input type="file" class="form-control-file" name="file" id="file" aria-describedby="fileHelp" accept=".dxf"> <!--this is like the 'i'm a sign not a cop' of HTML forms-->
 </div>
-  <fieldset class="form-group">
+ <!-- <fieldset class="form-group">
 <select multiple class="form-control" id="type" name="eng">
       <option>cut</option>
     </select>
-</fieldset>
+  
+</fieldset>  -->
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>
   </div>
 <hr>
- <footer class="text-center"> </footer>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="js/jquery-1.11.3.min.js"></script>
+<footer>
 
-<!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script src="js/bootstrap.js"></script>
-	</div>
-
+  <p> <font size="-99"><center>Thanks to: Hac Nguyenon on Codepen, dfsq on stackoverflow, SitePoint on Codepen. Designed by Quinn Brown and Dominick Strollo</center></font>
+	</footer>
 </body>
 </html>

@@ -20,9 +20,7 @@
   
   <div class="menu-item hidden-xs hidden-sm col-md-6 md-menu-items">
 	  <a href="index.php"> <div class="col-xs-4 menu-text">Home</div></a>
-	
 	  <a href="form.php"><div class="col-xs-4 menu-text">Send to Laser</div></a>
-	  <!-- coming soon boiiis -->
 	  <a href="archive.php"><div class="col-xs-4 menu-text">Archive</div></a>
   </div>
   </nav>
@@ -32,17 +30,16 @@
 <?php
         error_reporting(0);
 
-	//ob_start();
+	ob_start();
 	
-	//HAHAH GOOD LUCK MAINTAINING THIS SPAGHETTI 
 
 	
 
 $ftp_server = "localhost";
 $ftp_user_name = "test";
 $ftp_user_pass = "";
-//this is probably redundant, but i'm do scared to change it
-$destination_file = "/ftp". $_FILES["file"]["name"]; 
+//I DONT EVEN KNOW WHO TO CREDIT THE HELP TO THERE IS SO MUCH RANDOM CRAP FROM SO MANY STACK OVERFLOW TUTORIALS
+	$destination_file = "/ftp". $_FILES["file"]["name"]; 
 $source_file = $_FILES["file"]["tmp_name"]; 
 $fileInfo = pathinfo($_FILES["file"]["name"]);
 move_uploaded_file($_FILES["file"]["tmp_name"],
@@ -90,13 +87,52 @@ while (false !== ($entry = $d->read())) {
     $latest_ctime = filectime($filepath);
     $latest_filename = $entry;
   }
-}	
+}
+	
+$real_name = "/ftp/$latest_filename";
 $UUID = $latest_filename;
 $name = mysqli_real_escape_string($link, $_REQUEST['name']);
-$rad = $_POST['eng'];
+date_default_timezone_set("America/New_York");
+$ts = date("m-d-y") . " at " . date("h:ia");
 $material = $_POST['material'];
+if($material=="Thin Wood"){
+		$speed = 12;
+		$power = 55;
+	}
+elseif($material=="Thick Wood"){
+	$speed = 7;
+	$power = 55;
+}
+elseif($material=="Cardboard"){
+	$speed = 35;
+	$power = 45;
+	}
+elseif($material=="Paper"){
+	$speed = 20;
+	$power = 10;
+	}
+elseif($material=="Acrylic"){
+	$speed = 15;
+	$power = 50;
+	}
+else{
+//I am assuming that somehting horrifying has gone wrong and that putting the instance out of its misery is the only way
+	mysqli_close($link);
 
-$sql = "INSERT INTO current (UUID, NAME, CUT, MATERIAL) VALUES ('$UUID', '$name', '$rad', '$material')";
+}
+
+
+if (!empty($UUID) && !empty($name) && !empty($speed) && !empty($material) && !empty($power) && !empty($_FILES["file"]["name"])){
+	$sql = "INSERT INTO current (UUID, NAME, POWER, MATERIAL, ts, SPEED) VALUES ('$UUID', '$name', '$speed', '$material', '$ts','$power')";
+}
+	else{
+			$url = 'error.html'; 
+	while (ob_get_status()) 
+{
+   ob_end_clean();
+}
+	header( "Location: $url" );
+	}
 	
 if(mysqli_query($link, $sql)){
 } else{
@@ -105,47 +141,14 @@ if(mysqli_query($link, $sql)){
  
 mysqli_close($link);
 ?>
-
-  <div class="container">
-      <h1>&nbsp;</h1>
-      <div class="row">
-<div class="col-md-8 col-lg-12">
-      <div class="panel panel-default">
-        <div class="panel-heading"> Keep this in mind! There is no way to access this page later* (*this is coming soon)</div>
-        <div class="panel-body">
-          <div class="files-list">
-<div class="file"> 
-<center>
-	<?php	
-	if($material=="Thin Wood"){
-		echo"<p>Uploaded as: <b>$latest_filename</b></p>";
-		echo"<p>use <b>12 speed</b> and <b>55 power</b></p>";
-	}
-	elseif($material=="Thick Wood"){
-		echo"<p>Uploaded as: <b>$latest_filename</b></p>";
-		echo"<p>use <b>7 speed</b> and <b>55 power</b></p>";
-	}
-	elseif($material=="Cardboard"){
-		echo"<p>Uploaded as: <b>$latest_filename</b></p>";
-		echo"<p>use <b>35 speed</b> and <b>45 power</b></p>";
-	}
-	elseif($material=="Paper"){
-		echo"<p>Uploaded as: <b>$latest_filename</b></p>";
-		echo"<p>use <b>20 speed</b> and <b>10 power</b></p>";
-	}
-	elseif($material=="Acrylic"){
-		echo"<p>Uploaded as: <b>$latest_filename</b></p>";
-		echo"<p>use <b>15</b> speed and <b>50 power</b></p>";
-	}
-	else{
-		echo"<p>what</p>";
-	}
-//	$url = 'http://localhost/index.php'; 
-//	while (ob_get_status()) 
-//{
-//   ob_end_clean();
-//}
-//	header( "Location: $url" );
+	<?php
+	
+	$url = 'index.php'; 
+	while (ob_get_status()) 
+{
+   ob_end_clean();
+}
+	header( "Location: $url" );
 	
 ?>
 

@@ -31,36 +31,46 @@
   
 
 <div class="container">
+ <br>
+ <input type="text" id="search" placeholder="Type to search">
+<table id="table">
   <div class="row">
     <div class="col-xs-12">
-      <table class="table table-bordered table-hover dt-responsive">
-        <caption class="text-center">&nbsp;
-       
-        </caption>
+      <table class="table table-bordered table-hover dt-responsive" id='table'>
+        
         <thead>
           <tr>
             <th>File (click to download)</th>
-            <th>$speed</th>
-            <th>$power</th>
+            <th>speed</th>
+            <th>power</th>
         
-            <th>$timest</th>
+            <th>material</th>
+			  <th>uploaded</th>
           </tr>
         </thead>
         <tbody>
-         <?php 
+         <?php
+            $connect = mysqli_connect("localhost", "root", "", "files");
+            if (!$connect) {
+                die(mysqli_error());
+            }
+            $results = mysqli_query($connect, "SELECT * FROM current");
+            while($row = mysqli_fetch_array($results)) {
+            ?>
+                <tr>
+                    <td><?php  
+					$temp = $row['UUID'];
+						echo '<a href="ftp/'.$temp.'">'.$temp.'</a>';
+						?></td>
+                    <td><?php echo $row['SPEED']?></td>
+                    <td><?php echo $row['POWER']?></td>
+                    <td><?php echo $row['MATERIAL']?></td>
+                    <td><?php echo $row['ts']?></td>
+                </tr>
 
-		   $dir = opendir('ftp/'); 
-
-while ($read = readdir($dir)) {
-	echo '<tr>';
-if ($read!='.' && $read!='..' && $read!='old') { 
-echo '<td><a href="ftp/'.$read.'">'.$read.'</a></td>';
-	echo '</tr>';
-}
-}
-
-closedir($dir); 
-	?>
+            <?php
+            }
+            ?>
           
 
           
@@ -72,5 +82,10 @@ closedir($dir);
     </div>
   </div>
 </div>
+<script type="text/javascript" src="js/srch.js"></script>
+<footer>
+
+  <p> <font size="-99"><center>Thanks to: Hac Nguyenon on Codepen, dfsq on stackoverflow, SitePoint on Codepen. Designed by Quinn Brown and Dominick Strollo</center></font>
+	</footer>
 </body>
 </html>

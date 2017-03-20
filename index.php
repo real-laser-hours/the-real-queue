@@ -1,81 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap - Prebuilt Layout</title>
+  <meta charset="UTF-8">
+  <title></title>
 
-<!-- Bootstrap -->
-<link href="css/bootstrap.css" rel="stylesheet">
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
-<html>
-  <body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid"> 
+<head>
+<link href="css/bg.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    
-    <div class="collapse navbar-collapse" id="myDefaultNavbar1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">View All Files<span class="sr-only">(current)</span></a></li>
-        <li ><a href="form.html">Upload</a></li>
-        <li ><a href="archive.php">Archive</a></li>  
-                                <li class=""><a href="admin.php">Admin</a></li>  
- 
-      </ul>
-</div>
-    <!-- /.navbar-collapse --> 
+   <nav class="navbar navbar-default main-navbar">
+    <span class="col-xs-10 col-md-3 menu-item menu-header">All Saints Academy</span>
+  
+  <div class="menu-item hidden-xs hidden-sm col-md-6 md-menu-items">
+	  <a href="index.php"><div class="col-xs-4 menu-text">Home</div></a>
+	
+	  <a href="form.html"><div class="col-xs-4 menu-text">Send to Laser</div></a>
+	  <!-- coming soon boiiis -->
+	  <a href="archive.php"><div class="col-xs-4 menu-text">Archive</div></a>
   </div>
-  <!-- /.container-fluid --> 
-</nav>
-    
-    <div class="container">
-      <h1>&nbsp;</h1>
-      <div class="row">
-<div class="col-md-8 col-lg-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">Files list (WARNING: /old/ is not formatted. Use at own risk. Click a file to download)</div>
-        <div class="panel-body">
-          <div class="files-list">
-<div class="file"> 
-       <ul> 
-<?php 
+  </nav>
+  
+  
+  
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <table class="table table-bordered table-hover dt-responsive">
+        <caption class="text-center">&nbsp;
+       
+        </caption>
+        <thead>
+          <tr>
+            <th>File (click to download)</th>
+            <th>$speed</th>
+            <th>$power</th>
+        
+            <th>$timest</th>
+          </tr>
+        </thead>
+        <tbody>
+         <?php 
 
 		   $dir = opendir('ftp/'); 
-echo '<ul>';
+
 while ($read = readdir($dir)) {
-if ($read!='.' && $read!='..') { 
-echo '<li><a href="ftp/'.$read.'">'.$read.'</a></li>'; 
+	echo '<tr>';
+if ($read!='.' && $read!='..' && $read!='old') { 
+echo '<td><a href="ftp/'.$read.'">'.$read.'</a></td>';
+	echo '</tr>';
 }
 }
-echo '</ul>';
+
 closedir($dir); 
 	?>
+          
 
-</ul>
-         </div>
-          </div>
-        </div>
-      </div>
+          
+        </tbody>
+        <tfoot>
+          <tr> </tr>
+        </tfoot>
+      </table>
     </div>
   </div>
 </div>
-</body>
-</html>
-
-
-
-<script src="js/jquery-1.11.3.min.js"></script>
-
-<!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script src="js/bootstrap.js"></script>
 </body>
 </html>

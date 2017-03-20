@@ -1,69 +1,76 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html >
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+  <title></title>
+
 </head>
-
 <body>
- 
-<nav class="navbar navbar-default">
-  <div class="container-fluid"> 
+<head>
+<link href="css/bg.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    
-    <div class="collapse navbar-collapse" id="myDefaultNavbar1">
-      <ul class="nav navbar-nav">
-        <li><a href="index.php">View All Files<span class="sr-only">(current)</span></a></li>
-        <li ><a href="form.html">Upload</a></li>   
-                <li class="active"><a href="archive.php">Archive</a></li>   
-                                        <li class=""><a href="admin.php">Admin</a></li>  
-
-
-      </ul>
-</div>
-    <!-- /.navbar-collapse --> 
+   <nav class="navbar navbar-default main-navbar">
+    <span class="col-xs-10 col-md-3 menu-item menu-header">All Saints Academy</span>
+  
+  <div class="menu-item hidden-xs hidden-sm col-md-6 md-menu-items">
+	  <a href="index.php"><div class="col-xs-4 menu-text">Home</div></a>
+	
+	  <a href="form.html"><div class="col-xs-4 menu-text">Send to Laser</div></a>
+	  <!-- coming soon boiiis -->
+	  <a href="archive.php"><div class="col-xs-4 menu-text">Archive</div></a>
   </div>
-  <!-- /.container-fluid --> 
-</nav>
-	<div class="container">
-      <h1>&nbsp;</h1>
-      <div class="row">
-<div class="col-md-8 col-lg-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">click to download</div>
-        <div class="panel-body">
-          <div class="files-list">
-<div class="file"> 
-       <ul> 
-<?php 
-		   $dir = opendir('ftp/old/'); 
-echo '<ul>';
-while ($read = readdir($dir)) 
-{
+  </nav>
+  
+  
+  
 
-if ($read!='.' && $read!='..') 
-{ 
-echo '<li><a href="ftp/old/'.$read.'">'.$read.'</a></li>'; 
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <table class="table table-bordered table-hover dt-responsive">
+        <caption class="text-center">&nbsp;
+       
+        </caption>
+        <thead>
+          <tr>
+            <th>File (click to download)</th>
+            <th>$speed</th>
+            <th>$power</th>
+        
+            <th>$timest</th>
+          </tr>
+        </thead>
+        <tbody>
+         <?php 
+
+		   $dir = opendir('ftp/old'); 
+
+while ($read = readdir($dir)) {
+	echo '<tr>';
+if ($read!='.' && $read!='..') { 
+echo '<td><a href="ftp/old'.$read.'">'.$read.'</a></td>';
+	echo '</tr>';
 }
-
 }
-
-echo '</ul>';
 
 closedir($dir); 
 	?>
+          
 
-</ul> 
-         
-         
-         </div>
-          </div>
-        </div>
-      </div>
+          
+        </tbody>
+        <tfoot>
+          <tr> </tr>
+        </tfoot>
+      </table>
     </div>
   </div>
 </div>
-</body>
-
 </body>
 </html>

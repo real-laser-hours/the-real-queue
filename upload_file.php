@@ -2,29 +2,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/bg.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
  
-<nav class="navbar navbar-default">
-  <div class="container-fluid"> 
+<link href="css/bg.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    
-    <div class="collapse navbar-collapse" id="myDefaultNavbar1">
-      <ul class="nav navbar-nav">
-        <li><a href="index.php">View All Files<span class="sr-only">(current)</span></a></li>
-        <li ><a href="form.html">Upload</a></li>   
-                <li ><a href="archive.php">Archive</a></li>   
-                                        <li class=""><a href="admin.php">Admin</a></li>  
-
-
-      </ul>
-</div>
-    <!-- /.navbar-collapse --> 
+   <nav class="navbar navbar-default main-navbar">
+    <span class="col-xs-10 col-md-3 menu-item menu-header">All Saints Academy</span>
+  
+  <div class="menu-item hidden-xs hidden-sm col-md-6 md-menu-items">
+	  <a href="index.php"> <div class="col-xs-4 menu-text">Home</div></a>
+	
+	  <a href="form.php"><div class="col-xs-4 menu-text">Send to Laser</div></a>
+	  <!-- coming soon boiiis -->
+	  <a href="archive.php"><div class="col-xs-4 menu-text">Archive</div></a>
   </div>
-  <!-- /.container-fluid --> 
-</nav>
+  </nav>
+  
+  
 	
 <?php
         error_reporting(0);
@@ -67,7 +70,7 @@ $upload = ftp_put($conn_id, $destination_file, $source_file, FTP_BINARY);
 
 ftp_close($conn_id);
 	
-	//i mean if you are tech savvy enough to go here, im assuming you are smart enough to know that i log all actions
+	//security flaw #1,923,481
 $link = mysqli_connect("localhost", "root", "", "files");
  
 if($link === false){

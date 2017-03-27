@@ -14,5 +14,5 @@ CREATE TABLE `current` (
 CREATE TABLE `mynamachef` (
   `find` tinyint(1) NOT NULL,
   `nameq` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
 ```

@@ -33,28 +33,14 @@
 
   <div class="row">
 	  <div class="text-center col-md-12">
-	    <p>Other characters work(e.g. Chinese, Swedish, Russian etc.), but the database entry could corrupt, causing the file to become corrupt. Not reccomended.</p>
-	    <p>You can re-upload files with the same filename and project name and material. Just be aware of the timestamp on the upload page. </p>
+	    <p>Other characters work(e.g. Chinese, Swedish, Russian etc.). But not reccomended.</p>
+      <p>Please don't delete other people's stuff</p>
 	  </div>
-    <form role="form" enctype="multipart/form-data" action="upload_file.php" method="POST">
+    <form role="form" enctype="multipart/form-data" action="q.php" method="POST">
   <div class="form-group">
-    <label for="exampleInputEmail2">Project Name<br>
+    <label for="exampleInputEmail2">Enter Your Name<br>
     </label>
-    <input type="name" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="project name">
-</div>
-<div class="form-group">
-  <label for="exampleSelect2">Material Select</label>
-    <select multiple class="form-control" id="type" name="material">
-      <option>Thin Wood</option>
-      <option>Thick Wood</option>
-      <option>Cardboard</option>
-      <option>Paper</option>
-      <option>Acrylic</option>
-    </select>
-</div>
-<div class="form-group">
-  <label for="exampleInputFile">File input</label>
-    <input type="file" class="form-control-file" name="file" id="file" aria-describedby="fileHelp" accept=".dxf"> <!--this is like the 'i'm a sign not a cop' of HTML forms-->
+    <input type="nameq" class="form-control" id="nameq" name="nameq" aria-describedby="emailHelp" placeholder="Name">
 </div>
  <!-- <fieldset class="form-group">
 <select multiple class="form-control" id="type" name="eng">
@@ -65,6 +51,48 @@
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>
   </div>
+<Br>
+  <table id="table">
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="table table-bordered table-hover dt-responsive" id='table'>
+
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>time estimate</th>
+              <th>remove if done</th>
+            </tr>
+          </thead>
+          <tbody>
+           <?php
+              $connect = mysqli_connect("localhost", "root", "", "files");
+              if (!$connect) {
+                  die(mysqli_error());
+              }
+              $results = mysqli_query($connect, "SELECT * FROM mynamachef");
+              while($row = mysqli_fetch_array($results)) {
+              ?>
+                  <tr>
+                      <td><?php
+                      $temp = $row['nameq'];
+                      echo $temp ?></td>
+                      <td><?php echo $row['find']?></td>
+                      <td><?php echo "<a href='delete.php?id=".$row['nameq']."'>Delete</a>" ?></td>
+                  </tr>
+
+              <?php
+              }
+              ?>
+
+
+
+          </tbody>
+          <tfoot>
+            <tr> </tr>
+          </tfoot>
+        </table>
+
 <hr>
 <footer>
 

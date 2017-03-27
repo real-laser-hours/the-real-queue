@@ -17,18 +17,18 @@
 
    <nav class="navbar navbar-default main-navbar">
     <span class="col-xs-10 col-md-3 menu-item menu-header">All Saints Academy</span>
-  
+
   <div class="menu-item hidden-xs hidden-sm col-md-6 md-menu-items">
 	  <a href="index.php"><div class="col-xs-4 menu-text">Home</div></a>
-	
+
 	  <a href="form.html"><div class="col-xs-4 menu-text">Send to Laser</div></a>
 	  <!-- coming soon boiiis -->
-	  <a href="archive.php"><div class="col-xs-4 menu-text">Archive</div></a>
+	  <a href="queue.php"><div class="col-xs-4 menu-text">Queue</div></a>
   </div>
   </nav>
-  
-  
-  
+
+
+
 
 <div class="container">
  <br>
@@ -37,13 +37,13 @@
   <div class="row">
     <div class="col-xs-12">
       <table class="table table-bordered table-hover dt-responsive" id='table'>
-        
+
         <thead>
           <tr>
             <th>File (click to download)</th>
             <th>speed</th>
             <th>power</th>
-        
+
             <th>material</th>
 			  <th>uploaded</th>
           </tr>
@@ -58,7 +58,7 @@
             while($row = mysqli_fetch_array($results)) {
             ?>
                 <tr>
-                    <td><?php  
+                    <td><?php
 					$temp = $row['UUID'];
 						echo '<a href="ftp/'.$temp.'">'.$temp.'</a>';
 						?></td>
@@ -71,9 +71,9 @@
             <?php
             }
             ?>
-          
 
-          
+
+
         </tbody>
         <tfoot>
           <tr> </tr>

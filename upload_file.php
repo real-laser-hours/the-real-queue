@@ -120,10 +120,22 @@ else{
 	mysqli_close($link);
 
 }
-
-
+	
+	if($var > $max){
+		$note = "File exceeds the maximum allowable space.";
+		$note2 = -1; //to set up for disallowing printing later
+	}
+	elseif($var < $min){
+		$note = "File is below the minimum space allowed.";
+		$note2 = -1; //to set up for disallowing printing later
+	}
+	else{
+	$note = "";
+	$note2 = 0;
+	}
+	
 if (!empty($UUID) && !empty($name) && !empty($speed) && !empty($material) && !empty($power) && !empty($_FILES["file"]["name"])){
-	$sql = "INSERT INTO current (UUID, NAME, POWER, MATERIAL, ts, SPEED) VALUES ('$UUID', '$name', '$speed', '$material', '$ts','$power')";
+	$sql = "INSERT INTO current (UUID, NAME, POWER, MATERIAL, ts, SPEED, NOTES, PRNT) VALUES ('$UUID', '$name', '$speed', '$material', '$ts','$power', '$note','$note2')";
 }
 	else{
 			$url = 'error.html'; 

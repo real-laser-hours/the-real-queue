@@ -46,6 +46,7 @@
 
             <th>material</th>
 			  <th>uploaded</th>
+		  <th>notes</th>
           </tr>
         </thead>
         <tbody>
@@ -66,6 +67,7 @@
                     <td><?php echo $row['POWER']?></td>
                     <td><?php echo $row['MATERIAL']?></td>
                     <td><?php echo $row['ts']?></td>
+			<td><?php echo $notes?></td>
                 </tr>
 
             <?php

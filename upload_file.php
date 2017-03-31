@@ -6,7 +6,7 @@
 </head>
 
 <body>
- 
+
 <link href="css/bg.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -17,44 +17,44 @@
 
    <nav class="navbar navbar-default main-navbar">
     <span class="col-xs-10 col-md-3 menu-item menu-header">All Saints Academy</span>
-  
+
   <div class="menu-item hidden-xs hidden-sm col-md-6 md-menu-items">
 	  <a href="index.php"> <div class="col-xs-4 menu-text">Home</div></a>
 	  <a href="form.php"><div class="col-xs-4 menu-text">Send to Laser</div></a>
 	  <a href="archive.php"><div class="col-xs-4 menu-text">Archive</div></a>
   </div>
   </nav>
-  
-  
-	
+
+
+
 <?php
         error_reporting(0);
 
 	ob_start();
-	
 
-	
+
+
 
 $ftp_server = "localhost";
 $ftp_user_name = "test";
 $ftp_user_pass = "";
 //I DONT EVEN KNOW WHO TO CREDIT THE HELP TO THERE IS SO MUCH RANDOM CRAP FROM SO MANY STACK OVERFLOW TUTORIALS
-	$destination_file = "/ftp". $_FILES["file"]["name"]; 
-$source_file = $_FILES["file"]["tmp_name"]; 
+	$destination_file = "/ftp". $_FILES["file"]["name"];
+$source_file = $_FILES["file"]["tmp_name"];
 $fileInfo = pathinfo($_FILES["file"]["name"]);
 move_uploaded_file($_FILES["file"]["tmp_name"],
     "ftp/" . $_REQUEST['name'] . '-' . $_FILES["file"]["name"]);
 
 $conn_id = ftp_connect($ftp_server) or die("Can't connect to server");
-$login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass); 
+$login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
 
 
-if ((!$conn_id) || (!$login_result)) { 
-    echo "Attempted to connect to $ftp_server for user $ftp_user_name but it failed"; 
-	echo "god knows what you did but email quinn@prtzl.net"; 
-    exit; 
+if ((!$conn_id) || (!$login_result)) {
+    echo "Attempted to connect to $ftp_server for user $ftp_user_name but it failed";
+	echo "god knows what you did but email quinn@prtzl.net";
+    exit;
 }
-	
+
 ftp_pasv($conn_id, true);
 if ($_FILES["file"]["error"] > 0){
         echo "Error: " . $_FILES["file"]["error"] . "<br>";
@@ -62,23 +62,23 @@ if ($_FILES["file"]["error"] > 0){
 
 
 // it literally always throws that it didnt upload the file, yet it's always there. I think it's because I move the file to re-name it.
-$upload = ftp_put($conn_id, $destination_file, $source_file, FTP_BINARY); 
+$upload = ftp_put($conn_id, $destination_file, $source_file, FTP_BINARY);
 
 
 ftp_close($conn_id);
-	
+
 	//security flaw #1,923,481
 $link = mysqli_connect("localhost", "root", "", "files");
- 
+
 if($link === false){
     die("ERROR: email quinn@prtzl.net with the following: " . mysqli_connect_error());
 }
 
-$path = "ftp/"; 
+$path = "ftp/";
 $latest_ctime = 0;
-$latest_filename = '';    
+$latest_filename = '';
 
-	
+
 	// this is like linux, but the penguin is on fire, and has cancer
 $d = dir($path);
 while (false !== ($entry = $d->read())) {
@@ -88,7 +88,7 @@ while (false !== ($entry = $d->read())) {
     $latest_filename = $entry;
   }
 }
-	
+
 $real_name = "/ftp/$latest_filename";
 $UUID = $latest_filename;
 $name = mysqli_real_escape_string($link, $_REQUEST['name']);
@@ -102,66 +102,91 @@ if($material=="Thin Wood"){
 elseif($material=="Thick Wood"){
 	$speed = 7;
 	$power = 55;
+  $xMax =
+  $yMax =
+  $xMin =
+  $yMin =
 }
 elseif($material=="Cardboard"){
 	$speed = 35;
 	$power = 45;
+  $xMax =
+  $yMax =
+  $xMin =
+  $yMin =
 	}
 elseif($material=="Paper"){
 	$speed = 20;
 	$power = 10;
+  $xMax =
+  $yMax =
+  $xMin =
+  $yMin =
 	}
 elseif($material=="Acrylic"){
 	$speed = 15;
 	$power = 50;
+  $xMax =
+  $yMax =
+  $xMin =
+  $yMin =
 	}
 else{
 //I am assuming that somehting horrifying has gone wrong and that putting the instance out of its misery is the only way
 	mysqli_close($link);
-
 }
-	
-	if($var > $max){
-		$note = "File exceeds the maximum allowable space.";
+
+$file = "ftp/$UUID";
+$lines = file( $file );
+$x = $lines[29];
+$y = $lines[31];
+
+//assuming the cardboard is 1ft x .5 ft,
+if($x > $xMax || $y > $yMax){
+		$note = "File exceeds the maximum allowable space for material, or is a 3rd party file";
 		$note2 = -1; //to set up for disallowing printing later
 	}
-	elseif($var < $min){
-		$note = "File is below the minimum space allowed.";
+	elseif($x < $xMin || $y < $yMin){
+		$note = "File is below the minimum space allowed for material, or is a 3rd party file";
 		$note2 = -1; //to set up for disallowing printing later
 	}
 	else{
 	$note = "";
 	$note2 = 0;
 	}
-	
+
+
+
+
+
 if (!empty($UUID) && !empty($name) && !empty($speed) && !empty($material) && !empty($power) && !empty($_FILES["file"]["name"])){
-	$sql = "INSERT INTO current (UUID, NAME, POWER, MATERIAL, ts, SPEED, NOTES, PRNT) VALUES ('$UUID', '$name', '$speed', '$material', '$ts','$power', '$note','$note2')";
+  $sql = "INSERT INTO current (UUID, NAME, POWER, MATERIAL, ts, SPEED, NOTES, PRNT) VALUES ('$UUID', '$name', '$speed', '$material', '$ts','$power', '$note','$note2')";
 }
 	else{
-			$url = 'error.html'; 
-	while (ob_get_status()) 
+			$url = 'error.html';
+	while (ob_get_status())
 {
    ob_end_clean();
 }
 	header( "Location: $url" );
 	}
-	
+
 if(mysqli_query($link, $sql)){
 } else{
     echo "email quinn@prtzl.net with the following: $sql. " . mysqli_error($link);
 }
- 
+
 mysqli_close($link);
 ?>
 	<?php
-	
-	$url = 'index.php'; 
-	while (ob_get_status()) 
+
+	$url = 'index.php';
+	while (ob_get_status())
 {
    ob_end_clean();
 }
 	header( "Location: $url" );
-	
+
 ?>
 
 	</center>

@@ -34,7 +34,8 @@
   <div class="row">
 	  <div class="text-center col-md-12">
 	    <p>Other characters work(e.g. Chinese, Swedish, Russian etc.). But not reccomended.</p>
-      <p>Please don't delete other people's stuff</p>
+      <h1>This whole page is mostly non-functional, I left it here for posterity</h1>
+
 	  </div>
     <form role="form" enctype="multipart/form-data" action="q.php" method="POST">
   <div class="form-group">

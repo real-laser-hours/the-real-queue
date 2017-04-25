@@ -46,6 +46,8 @@
 
             <th>material</th>
 			  <th>uploaded</th>
+        <th>notes</th>
+
           </tr>
         </thead>
         <tbody>
@@ -54,7 +56,7 @@
             if (!$connect) {
                 die(mysqli_error());
             }
-            $results = mysqli_query($connect, "SELECT * FROM current");
+            $results = mysqli_query($connect, "SELECT * FROM current ORDER BY ts DESC");
             while($row = mysqli_fetch_array($results)) {
             ?>
                 <tr>
@@ -66,6 +68,8 @@
                     <td><?php echo $row['POWER']?></td>
                     <td><?php echo $row['MATERIAL']?></td>
                     <td><?php echo $row['ts']?></td>
+                    <td><?php echo $row['NOTES']?></td>
+
                 </tr>
 
             <?php

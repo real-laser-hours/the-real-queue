@@ -1,8 +1,4 @@
-
-
-
 <?php
-
 	ob_start();
 $connect = mysqli_connect("localhost", "root", "", "files");
 if($_GET['id'] != ""){
